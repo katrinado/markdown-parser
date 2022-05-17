@@ -12,11 +12,11 @@ public class MarkdownParse {
         // find the next [, then find the ], then find the (, then read link upto next )
         int currentIndex = 0;
         //fix infinite loop problem
-        while(currentIndex < markdown.lastIndexOf(")") && !markdown.contains("))")) {
+        while(currentIndex < markdown.lastIndexOf(")")) {
             int openBracket = markdown.indexOf("[", currentIndex);
             int closeBracket = markdown.indexOf("]", openBracket);
             int openParen = markdown.indexOf("(", closeBracket);
-            int closeParen = markdown.indexOf(")", currentIndex);
+            int closeParen = markdown.indexOf(")", openBracket);
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
         }
